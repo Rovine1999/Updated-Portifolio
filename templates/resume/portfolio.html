@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title> {{project.category}} | {{project.client}} | RovFolio</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="intr intro-singl rout bg-image" style="background-image: url({% static 'assets/img/overlay-bg.jpg' %})">
+<!--    <div class="overlay-mf"></div>-->
+    <div class="intro-content display-table"  style="background: #0062d3;">
+      <div class="">
+        <div class="container d-flex justify-content-between py-3 align-items-center">
+          <h2 class="intro-title text-white">Portfolio Details</h2>
+          <ol class="breadcrumb d-flex justify-content-center text-white">
+            <li class="breadcrumb-item">
+              <a href="{% url 'home' %}" class="text-white">Home</a>
+            </li>
+            <li class="breadcrumb-item active text-dark">Portfolio Details</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details my-3" class="portfolio-details">
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper-container">
+              <div class="swiper-wrapper align-items-center">
+
+                <div class="swiper-slide">
+                  <img src="/media/{{project.project_image}}" alt="">
+                </div>
+
+                {% for image in project_images %}
+                  <div class="swiper-slide">
+                    <img src="/media/{{image.image}}" alt="">
+                  </div>
+                {% endfor %}
+
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>Project information</h3>
+              <ul>
+                <li class="">
+                  <div class="row">
+                    <div class="col-4">
+                      <strong>Category</strong>
+                    </div>
+                    <div class="col-8">
+                      {{project.category}}
+                    </div>
+                  </div>
+                </li>
+                <li class="">
+                  <div class="row">
+                    <div class="col-4">
+                      <strong>Client</strong>
+                    </div>
+                    <div class="col-8">
+                      {{project.client}}
+                    </div>
+                  </div>
+                </li>
+                <li class="">
+                  <div class="row">
+                    <div class="col-4">
+                      <strong>Project date</strong>
+                    </div>
+                    <div class="col-8">
+                      {{project.project_date}}
+                    </div>
+                  </div>
+                </li>
+                <li class="">
+                  <div class="row">
+                    <div class="col-4">
+                      <strong>Project URL</strong>
+                    </div>
+                    <div class="col-8">
+                      {{project.project_url}}
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="portfolio-info mt-3">
+              <h3>Project description</h3>
+              <p>
+                 {{project.project_description}}
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Details Section -->
+
+  </main><!-- End #main -->
+
+{% include './../components/footer.html' %}
+</body>
+
+</html>
